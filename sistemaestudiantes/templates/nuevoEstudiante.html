@@ -1,0 +1,24 @@
+{% extends "estructura.html" %}
+{% block contenido %}
+
+
+<form action="{% url 'sistemaestudiantes.views.nuevoEstudiante' %}" method="POST">
+	<!-- garantiza que el usuario que pidio el recurso se le envie a él y evita la inyeccion SQL-->
+		{% csrf_token %}
+		<p>Apellidos: {{form.apellidos}} </p>
+		<p>Nombres: {{form.nombreEstudiante}} </p>
+		<p>Tipo Identificacion: {{form.tipoidentidad}}</p>
+		<p>Identificacion: {{form.identificacion}}</p>
+		<p>Direccion: {{form.direccion}} </p>
+		<p>Telefono: {{form.telefono}} </p>
+		<p>Estado Civil: {{form.estadocivil}} </p>
+		<p>Genero: {{form.generoEstudiante}} </p>	
+		<p>Email: {{form.email}} </p>	
+		<p>Semestre: {{form.semestre}} </p>
+		<p>Promedio: {{form.promedio}} </p>		
+			
+		<input type="submit" value="Registrar">
+</form>
+
+
+{% endblock %}	

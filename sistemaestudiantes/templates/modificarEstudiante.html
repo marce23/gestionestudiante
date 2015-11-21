@@ -1,0 +1,20 @@
+{% extends "estructura.html" %}
+{% block contenido %}
+
+<form action="{% url 'sistemaestudiantes.views.updateestudiante' estudiante.pk %}" method="POST">
+		{% csrf_token %} 
+		<p>Identificacion: {{estudiante.identificacion}}</p>
+		<p>Apellidos: {{form.apellidos}} </p>
+		<p>Nombres: {{form.nombreEstudiante}} </p>
+		<p>Direccion: {{form.direccion}} </p>
+		<p>Telefono: {{form.telefono}} </p>
+		<p>Estado Civil: {{form.estadocivil}} </p>
+		<p>Genero: {{form.generoEstudiante}} </p>	
+		<p>Email: {{form.mail}} </p>	
+		<p>Semestre: {{form.semestre}} </p>
+		<p>Promedio: {{form.promedio}} </p>		
+			
+		<input type="submit" value="Modifiar">
+</form>
+
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends "estructura.html" %}
+{% block contenido %}
+	{%  for linea in entrada %} 
+		<article>
+			<a href="{% url 'sistemaestudiantes.views.entrada' linea.pk %}">
+				<h4>{{ linea.nombreEstudiante }}</h4>
+			</a>
+			</article>
+			<h1 class="page-subhead-line"></h1>
+	{% endfor %}
+{% endblock %}

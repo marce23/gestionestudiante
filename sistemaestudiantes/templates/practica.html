@@ -4,7 +4,7 @@
         <li class="active">
         </li>
     </ol>	
-	<form action="{% url 'sistemaestudiantes.views.regform' entrada.pk %}" method="POST">
+	<form action="{% url 'sistemaestudiantes.views.regpractica' entrada.pk %}" method="POST">
 		{% csrf_token %} 
 		{{ form.as_p }}
 		<input class="btn btn-sm btn-primary" type="submit" value="Registrar">

@@ -1,0 +1,12 @@
+{% extends "estructura.html" %}
+{% block contenido %} 
+	<ol class="breadcrumb">
+        <li class="active"> Registrar Nota
+        </li>
+    </ol>	
+	<form action="{% url 'sistemaestudiantes.views.regnota' entrada.pk %}" method="POST">
+		{% csrf_token %} 
+		{{ form.as_p }}
+		<input class="btn btn-sm btn-primary" type="submit" value="Guardar">
+	</form>
+{% endblock %}

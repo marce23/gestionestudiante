@@ -1,9 +1,12 @@
 {% extends "estructura.html" %}
 {% block contenido %}
 	{%  for linea in entrada %} 
+
 		<article>
+		<a href="/"><h1 class="page-head-line" align="CENTER">LISTADO DE ESTUDIANTES</h1></a> 
 			<a href="{% url 'sistemaestudiantes.views.entrada' linea.pk %}">
-				<h4>{{ linea.nombreEstudiante }}</h4>
+			<br>
+				<h4>{{ linea.apellidos}} {{ linea.nombreEstudiante }} </h4>
 			</a>
 			</article>
 			<h1 class="page-subhead-line"></h1>

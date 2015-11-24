@@ -33,11 +33,12 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
+    'social.apps.django_app.default',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'sistemaestudiantes',
+    'sistemaestudiantes',    
 )
 
 MIDDLEWARE_CLASSES = (
@@ -104,3 +105,18 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS=(
     os.path.join(BASE_DIR, 'static'),
     )
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',    
+    'social.backends.facebook.FacebookAppOAuth2',
+    'social.backends.facebook.FacebookOAuth2',
+    'social.backends.twitter.TwitterOAuth',    
+)
+
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
+
+SOCIAL_AUTH_TWITTER_KEY = 'ny4bUGOIn6odiKKJFXJ0CdEqJ'
+SOCIAL_AUTH_TWITTER_SECRET = 'Y9BcGretd5Xa0Qm4yAAfoCWoqjjyKys5RxqDSD1TLtHFSGjj55'
+
+SOCIAL_AUTH_FACEBOOK_KEY = '1493741220922728'
+SOCIAL_AUTH_FACEBOOK_SECRET = '40110ca752eeb44a5cb9161a48dbc7cc'

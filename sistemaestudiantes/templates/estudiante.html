@@ -1,24 +1,26 @@
 {% extends "estructura.html" %}
 {% block contenido %}
 <div class="row">
+    <h1 class="main-box mb-dull" align="CENTER" font>DETALLES DEL ESTUDIANTE</h1><br> 
+        <div class="col-md-4">
+            <div class="main-box mb-red">
+                <a href="{% url 'sistemaestudiantes.views.update' entrada.pk %}">
+                <i></i>
+                    <h5>Modificar Estudiante</h5>
+                </a>
+            </div>
+        </div>  
+                    
+        <div class="col-md-4">
+            <div class="main-box mb-red">
+                <a href="{% url 'sistemaestudiantes.views.eliminar' entrada.pk %}">
+                <i></i>
+                <h5>Eliminar Estudiante</h5>
+                </a>
+            </div>
+        </div>
                     <div class="col-md-4">
                         <div class="main-box mb-red">
-                            <a href="{% url 'sistemaestudiantes.views.update' entrada.pk %}">
-                                <i></i>
-                                <h5>Modificar Estudiante</h5>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="main-box mb-dull">
-                            <a href="{% url 'sistemaestudiantes.views.eliminar' entrada.pk %}">
-                                <i></i>
-                                <h5>Eliminar Estudiante</h5>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="main-box mb-pink">
                             <a href="{% url 'sistemaestudiantes.views.add' %}">
                                 <i></i>
                                 <h5>Nuevo Estudiante</h5>
@@ -27,22 +29,60 @@
                     </div>
 
 </div>
-<h1 class="page-subhead-line"></h1>
-<article>	
-		<h3>Nombre del Estudiante:</h3><br><h4> {{ entrada.nombreEstudiante }} {{ entrada.apellidos }} </h4><br>
-		<h4>Identificacion: {{ entrada.identificacion }}</h4>
-		<h3>Datos Generales</h3><br>
-		<h4>Genero: {{ entrada.generoEstudiante }} </h4>
-		<h4>Estado Civil: {{ entrada.estadocivil }} </h4>
-		<h4>Direccion: {{ entrada.direccion }} </h4>
-		<h3>Datos de Contacto</h3><br>
-		<h4>Telefono: {{ entrada.telefono }} </h4>
-		<h4>Email: {{ entrada.email }} </h4>
-		<h3>Datos Academicos</h3><br>
-		<h4>Semestre: {{ entrada.semestre }} </h4>
-		<h4>Promedio: {{ entrada.promedio }} </h4>
+<div class="col-md-4">
+    <div class="panel panel-success" style="width: 980px;">
+        <div class="panel-heading">{{ entrada.apellidos}} {{ entrada.nombreEstudiante }} <br> Identificacion: {{ entrada.identificacion }}
+        </div>
+        <div class="panel-body">
+
+        <article>   
+        
+        <h4>Genero: {{ entrada.generoEstudiante }} </h4>
+        <h4>Estado Civil: {{ entrada.estadocivil }} </h4>
+        <h4>Direccion: {{ entrada.direccion }} </h4>
+        <h4>Telefono: {{ entrada.telefono }} </h4>
+        <h4>Email: {{ entrada.email }} </h4>
+        <h4>Semestre: {{ entrada.semestre }} </h4>
+        <h4>Promedio: {{ entrada.promedio }} </h4>
 </article>
+<br>
+<br>
+    <div class="main-box mb-dull">
+        <a href="{% url 'sistemaestudiantes.views.addform' entrada.pk %}">
+            <i></i>
+                 <h5>Llenar formulario</h5>
+        </a>
+    </div>
+    <div class="main-box mb-dull">
+        <a href="{% url 'sistemaestudiantes.views.addpractica' entrada.pk %}">
+            <i></i>
+                 <h5>Registrar Practica</h5>
+        </a>
+    </div>
+    
+    <div class="main-box mb-dull">
+        <a href="{% url 'sistemaestudiantes.views.addnota' entrada.pk %}">
+            <i></i>
+                 <h5>Registrar Notas</h5>
+        </a>
+    </div>
 
-
-
+{% if misnotas %}{% endif %}
+  {% for misnotas in misnotas %}
+    <div class="col-md-4">
+    <div class="panel panel-success" style="width:300px;">
+        <div class="panel-heading"> Nombre Materia: {{ misnotas.materia }}
+        </div>
+        <div class="panel-body">
+            <li>Calificacion: {{ misnotas.nota }} </li>
+            <li>Observaciones: {{ misnotas.observaciones }}</li>
+                                   
+                            
+    </div>
+    </div>
+    </div>
+     {% endfor %}
 {% endblock %}
+        </div>
+        </div>
+        </div>

@@ -1,13 +1,12 @@
 from django.shortcuts import render,render_to_response
 from django.core.urlresolvers import reverse
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
-
 from django.http import HttpResponseRedirect
-
-from sistemaestudiantes.models import Entrada
-
+from sistemaestudiantes.models import Entrada, Formulario, Notas, Practica
 from django.forms import ModelForm
 from django.core.context_processors import csrf
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required                                          
 
 class FormularioEstudiante(ModelForm):
 	class Meta:
@@ -19,6 +18,11 @@ def main(request):
 # mando los datos a la vista
 	return render_to_response("listado.html",dict(entrada=entrada, user=request.user))
 
+def salir(request):
+	logout(request)
+	return HttpResponseRedirect(reverse("sistemaestudiantes.views.main"))	
+
+@login_required(login_url='/')
 def add(request):
 	p=dict(form=FormularioEstudiante(), user=request.user)
 	p.update(csrf(request))
@@ -33,12 +37,13 @@ def nuevoEstudiante(request):
 	return HttpResponseRedirect(reverse("sistemaestudiantes.views.main"))
 
 def entrada(request,pk):
-	##entrada.object.get --> SELECT * FROM entrada WHERE id=pk
 	identrada= Entrada.objects.get(pk=int(pk))
-	p=dict(entrada=identrada, form=FormularioEstudiante)
+	misnotas=Notas.objects.filter(identrad=identrada)
+	p=dict(entrada=identrada, form=FormularioEstudiante, misnotas=misnotas)
 	p.update(csrf(request))
 	return render_to_response("estudiante.html",p)
 
+@login_required(login_url='/')
 def eliminar(request,pk):
 	estudiante=Entrada.objects.get(pk=int(pk))
 	estudiante.delete()
@@ -69,8 +74,57 @@ def updateestudiante(request,pk):
 	
 	return HttpResponseRedirect(reverse("sistemaestudiantes.views.main"))
 
+class Form(ModelForm):
+    class Meta:
+        model = Formulario
+        exclude = ["id"]
 
-	class Formulario(ModelForm):
-		class Meta:
-			model = Formulario
-			exclude = ["id"]
+def regform(request, pk):
+    p = request.POST
+    form = Formulario(idform=Entrada.objects.get(pk=pk))
+    fr = Form(p, instance=form)
+    fr.save()
+    return HttpResponseRedirect(reverse("sistemaestudiantes.views.main"))
+
+def addform(request, pk):
+	identrada = Entrada.objects.get(pk=int(pk))
+	p=dict(entrada=identrada, form=Form())
+	p.update(csrf(request))
+	return render_to_response("formulario.html", p)
+
+class FormNotas(ModelForm):
+    class Meta:
+        model = Notas
+        exclude = ["id"]
+
+def regnota(request, pk):
+    p = request.POST
+    notas= Notas(identrad=Entrada.objects.get(pk=pk))
+    fn = FormNotas(p, instance=notas)
+    fn.save()
+    return HttpResponseRedirect(reverse("sistemaestudiantes.views.main"))
+
+def addnota(request, pk):
+	identrada = Entrada.objects.get(pk=int(pk))
+	p=dict(entrada=identrada, form=FormNotas())
+	p.update(csrf(request))
+	return render_to_response("notas.html", p)
+
+
+class FormPractica(ModelForm):
+    class Meta:
+        model = Practica
+        exclude = ["id"]
+
+def regpractica(request, pk):
+    p = request.POST
+    practica = Practica(identrada=Entrada.objects.get(pk=pk))
+    fp = FormPractica(p, instance=practica)
+    fp.save()
+    return HttpResponseRedirect(reverse("sistemaestudiantes.views.main"))
+
+def addpractica(request, pk):
+	identrada = Entrada.objects.get(pk=int(pk))
+	p=dict(entrada=identrada, form=FormPractica())
+	p.update(csrf(request))
+	return render_to_response("practica.html", p)

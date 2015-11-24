@@ -14,11 +14,17 @@
     =============================================*/
 .main-box {
     text-align:center;
-    padding:20px;
+    text-decoration: none;
+    padding:10px;
     border-radius:5px;
     -moz-border-radius:5px ;
     -webkit-border-radius:5px;
-    margin-bottom:40px;
+    margin-bottom:50px;
+    margin-top: -30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    color:#fff;
+
 }
     .main-box a,.main-box a:hover {
         color:#fff;
@@ -38,6 +44,7 @@
         font-size:16px;
         font-weight:800;
         text-transform:uppercase;
+
     }
 /*==============================================
     CHAT WINDOW  STYLES    

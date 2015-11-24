@@ -43,6 +43,28 @@ class Migration(migrations.Migration):
                 ('programa', models.CharField(max_length=1, choices=[(b'E', b'Enfermeria Superior'), (b'T', b'Trabajo Social'), (b'P', b'Psicologia'), (b'N', b'Nutricion y Dietetica'), (b'O', b'Terapia Ocupacional'), (b'C', b'Contaduria publica'), (b'M', b'Administracion de Empresas'), (b'D', b'Derecho'), (b'I', b'Ingenieria de Sistemas'), (b'A', b'Ingenieria Ambiental'), (b'P', b'Ingenieria Mecatronica')])),
                 ('colegio', models.CharField(max_length=200)),
                 ('puntaje', models.FloatField()),
+                ('idform', models.ForeignKey(to='sistemaestudiantes.Entrada')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Notas',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('materia', models.CharField(max_length=100)),
+                ('nota', models.IntegerField(default=0)),
+                ('observaciones', models.CharField(max_length=200)),
+                ('identrad', models.ForeignKey(to='sistemaestudiantes.Entrada')),
+            ],
+        ),
+        migrations.CreateModel(
+            name='Practica',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('nombre_empresa', models.CharField(max_length=200)),
+                ('correo', models.CharField(max_length=100)),
+                ('fecha_inicio', models.DateTimeField()),
+                ('fecha_fin', models.DateTimeField()),
+                ('identrada', models.ForeignKey(to='sistemaestudiantes.Entrada')),
             ],
         ),
     ]

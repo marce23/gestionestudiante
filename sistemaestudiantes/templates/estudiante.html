@@ -19,86 +19,80 @@
                 </a>
             </div>
         </div>
-                    <div class="col-md-4">
-                        <div class="main-box mb-red">
-                            <a href="{% url 'sistemaestudiantes.views.add' %}">
-                                <i></i>
-                                <h5>Nuevo Estudiante</h5>
-                            </a>
-                        </div>
-                    </div>
-
-</div>
-<div class="col-md-4">
-    <div class="panel panel-success" style="width: 980px;">
-        <div class="panel-heading">{{ entrada.apellidos}} {{ entrada.nombreEstudiante }} <br> Identificacion: {{ entrada.identificacion }}
+                    
+        <div class="col-md-4">
+            <div class="main-box mb-red">
+                <a href="{% url 'sistemaestudiantes.views.add' %}">
+                <i></i>
+                <h5>Nuevo Estudiante</h5>
+                </a>
+            </div>
         </div>
-        <div class="panel-body">
 
-        <article>   
-        
-        <h4>Genero: {{ entrada.generoEstudiante }} </h4>
-        <h4>Estado Civil: {{ entrada.estadocivil }} </h4>
-        <h4>Direccion: {{ entrada.direccion }} </h4>
-        <h4>Telefono: {{ entrada.telefono }} </h4>
-        <h4>Email: {{ entrada.email }} </h4>
-        <h4>Semestre: {{ entrada.semestre }} </h4>
-        <h4>Promedio: {{ entrada.promedio }} </h4>
-</article>
-<br>
-<br>
-   <!-- <div class="main-box mb-dull">
-        <a href="{% url 'sistemaestudiantes.views.addform' entrada.pk %}">
-            <i></i>
-                 <h5>Llenar formulario</h5>
-        </a>
-    </div>-->
-    <div class="main-box mb-dull">
-        <a href="{% url 'sistemaestudiantes.views.addpractica' entrada.pk %}">
-            <i></i>
-                 <h5>Registrar Practica</h5>
-        </a>
-    </div>
+        <div class="col-md-4">
+            <div class="panel panel-success" style="width: 980px;">
+                <div class="panel-heading">{{ entrada.apellidos}} {{ entrada.nombreEstudiante }} <br> Identificacion: {{ entrada.identificacion }}
+                </div>
+            <div class="panel-body">
 
+            <article>   
+            
+            <h4>Genero: {{ entrada.generoEstudiante }} </h4>
+            <h4>Estado Civil: {{ entrada.estadocivil }} </h4>
+            <h4>Direccion: {{ entrada.direccion }} </h4>
+            <h4>Telefono: {{ entrada.telefono }} </h4>
+            <h4>Email: {{ entrada.email }} </h4>
+            <h4>Semestre: {{ entrada.semestre }} </h4>
+            <h4>Promedio: {{ entrada.promedio }} </h4>
+            </article>
+            <br>
+            <br>
+            <div class="main-box mb-dull">
+                <a href="{% url 'sistemaestudiantes.views.addpractica' entrada.pk %}">
+               
+                <h5>Registrar Practica</h5>
+                </a>
+            </div>
 {% if mispracticas %}{% endif %}
-  {% for mispracticas in mispracticas %}
-<div class="col-md-4">
-    <div class="panel panel-success" style="width:300px;">
-        <div class="panel-heading"> Nombre Empresa: {{ mispracticas.nombre_empresa }}
-        </div>
-        <div class="panel-body">
-            <li>Correo: {{ mispracticas.correo }} </li>
-            <li>Fecha Inicio: {{ mispracticas.fecha_inicio }}</li>
-            <li>Fecha Fin: {{ mispracticas.fecha_fin }}</li>
-                                          
-    </div>
-    </div>
-    </div>
-        {% endfor %}
-    
-    <div class="main-box mb-dull">
-        <a href="{% url 'sistemaestudiantes.views.addnota' entrada.pk %}">
-            <i></i>
-                 <h5>Registrar Notas</h5>
-        </a>
-    </div>
+    {% for mispracticas in mispracticas %}
+            <div class="col-md-4">
+                <div class="panel panel-success" style="width:300px;">
+                    <div class="panel-heading"> Nombre Empresa: {{ mispracticas.nombre_empresa }}
+                    </div>
+                    <div class="panel-body">
+                        <li>Correo: {{ mispracticas.correo }} </li>
+                        <li>Fecha Inicio: {{ mispracticas.fecha_inicio }}</li>
+                        <li>Fecha Fin: {{ mispracticas.fecha_fin }}</li>                            
+                    </div>
+                </div>
+                </div>
+            </div>
+            <br>
+
+    {% endfor %}
+
+            <div class="main-box mb-dull">
+                <a href="{% url 'sistemaestudiantes.views.addnota' entrada.pk %}">
+            
+                    <h5>Registrar Notas</h5>
+                </a>
+            </div>
 
 {% if misnotas %}{% endif %}
-  {% for misnotas in misnotas %}
-    <div class="col-md-4">
-    <div class="panel panel-success" style="width:300px;">
-        <div class="panel-heading"> Nombre Materia: {{ misnotas.materia }}
-        </div>
-        <div class="panel-body">
-            <li>Calificacion: {{ misnotas.nota }} </li>
-            <li>Observaciones: {{ misnotas.observaciones }}</li>
+    {% for misnotas in misnotas %}
+        
+            <div class="panel panel-success" style="width:300px; margin-left: 30px;">
+                <div class="panel-heading"> Nombre Materia: {{ misnotas.materia }}
+                </div>
+
+                <div class="panel-body">
+                    <li>Calificacion: {{ misnotas.nota }} </li>
+                    <li>Observaciones: {{ misnotas.observaciones }}</li>
                                    
-                            
-    </div>
-    </div>
-    </div>
-        {% endfor %}
+                </div>
+            </div>
+
+        </div>
+</div>
+{% endfor %}
 {% endblock %}
-        </div>
-        </div>
-        </div>

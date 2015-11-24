@@ -40,7 +40,7 @@ def entrada(request,pk):
 	identrada= Entrada.objects.get(pk=int(pk))
 	misnotas=Notas.objects.filter(identrad=identrada)
 	mispracticas=Practica.objects.filter(identrada=identrada)
-	p=dict(entrada=identrada, form=FormularioEstudiante, misnotas=misnotas)
+	p=dict(entrada=identrada, form=FormularioEstudiante, misnotas=misnotas, mispracticas=mispracticas)
 	p.update(csrf(request))
 	return render_to_response("estudiante.html",p)
 

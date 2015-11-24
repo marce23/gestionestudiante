@@ -47,18 +47,34 @@
 </article>
 <br>
 <br>
-    <div class="main-box mb-dull">
+   <!-- <div class="main-box mb-dull">
         <a href="{% url 'sistemaestudiantes.views.addform' entrada.pk %}">
             <i></i>
                  <h5>Llenar formulario</h5>
         </a>
-    </div>
+    </div>-->
     <div class="main-box mb-dull">
         <a href="{% url 'sistemaestudiantes.views.addpractica' entrada.pk %}">
             <i></i>
                  <h5>Registrar Practica</h5>
         </a>
     </div>
+
+{% if mispracticas %}{% endif %}
+  {% for mispracticas in mispracticas %}
+<div class="col-md-4">
+    <div class="panel panel-success" style="width:300px;">
+        <div class="panel-heading"> Nombre Empresa: {{ mispracticas.nombre_empresa }}
+        </div>
+        <div class="panel-body">
+            <li>Correo: {{ mispracticas.correo }} </li>
+            <li>Fecha Inicio: {{ mispracticas.fecha_inicio }}</li>
+            <li>Fecha Fin: {{ mispracticas.fecha_fin }}</li>
+                                          
+    </div>
+    </div>
+    </div>
+        {% endfor %}
     
     <div class="main-box mb-dull">
         <a href="{% url 'sistemaestudiantes.views.addnota' entrada.pk %}">
@@ -81,7 +97,7 @@
     </div>
     </div>
     </div>
-     {% endfor %}
+        {% endfor %}
 {% endblock %}
         </div>
         </div>

@@ -6,7 +6,44 @@
     </ol>	
 	<form action="{% url 'sistemaestudiantes.views.regpractica' entrada.pk %}" method="POST">
 		{% csrf_token %} 
-		{{ form.as_p }}
+
+		<div class="col-md-6 col-sm-6 col-xs-12">
+               <div class="panel panel-info">
+                        <div class="panel-heading">
+                          REGISTRAR PRACTICA
+                        </div>
+                        <div class="panel-body">
+							<div class="form-group">
+                                            <label>Apellidos Estudiante</label>
+                                            <select class="form-control" {{ form.identrada }}
+                                           </select>
+                        </div>
+
+                        <div class="form-group">
+                                            <label>Nombre de la Empresa</label><br>
+                                            Nombre de la empresa donde el estudiante realiza la practica
+                                            <input class="form-control" type="text" id="{{ form.nombre_empresa }}
+                                 </div>
+
+                        <div class="form-group">
+                                            <label>Email de la Empresa</label>
+                                            <input class="form-control" type="text" id="{{ form.correo }}
+                                 </div>
+
+                        <div class="form-group">
+                                            <label>Fecha de Inicio</label><br>
+                                            Fecha de iniciacion de la practica
+                                            <input class="form-control" type="text" id="{{ form.fecha_inicio }}
+                                 </div>
+
+                        <div class="form-group">
+                                            <label>Fecha de Finalizacion</label><br>
+                                            Fecha de finalizacion de la practica
+                                            <input class="form-control" type="text" id="{{ form.fecha_fin }}
+                                 </div>
+
+                         
+
 		<input class="btn btn-sm btn-primary" type="submit" value="Registrar">
 	</form>
 {% endblock %}
